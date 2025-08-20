@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astrocsv"
+version = "0.1.0"
+description = "Location-based astro transit CSV generator with KP nakshatra calculations"
+authors = [{name = "AstroCSV Team"}]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyswisseph>=2.10",
+    "astral>=3.0",
+    "pandas>=2.0",
+    "typer>=0.9",
+    "zoneinfo; python_version < '3.9'"
+]
+
+[project.scripts]
+astrocsv = "astrocsv.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/astrocsv/astrocsv"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["astrocsv*"]
+
+[tool.setuptools.package-data]
+astrocsv = ["ephe/*"]
