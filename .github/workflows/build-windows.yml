@@ -1,0 +1,77 @@
+name: Build Windows Application
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Node.js dependencies
+      run: npm install
+      
+    - name: Install Python dependencies
+      run: |
+        cd python_backend
+        pip install -r requirements.txt
+        cd ..
+        
+    - name: Build React application
+      run: npm run build
+      
+    - name: Build Windows application
+      run: npm run dist-win
+      
+    - name: Upload Windows installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: windows-installer
+        path: dist/*.exe
+        retention-days: 30
+        
+    - name: Create Release
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*.exe
+        tag_name: v${{ github.run_number }}
+        name: LBAT Desktop v${{ github.run_number }}
+        body: |
+          Windows installer for LBAT Desktop Application
+          
+          ## What's included:
+          - Complete Windows application (.exe)
+          - All dependencies included
+          - No additional software needed
+          
+          ## Installation:
+          1. Download the .exe file
+          2. Double-click to install
+          3. Follow the installation wizard
+          
+          ## System Requirements:
+          - Windows 10 (version 1903) or later
+          - 64-bit architecture
+          - 4 GB RAM minimum
+          - 500 MB free space
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
