@@ -33,6 +33,8 @@ jobs:
       run: |
         cd frontend
         npm install
+        echo "Frontend dependencies installed. Listing node_modules:"
+        ls -la node_modules/ | head -10
         cd ..
       
     - name: Install Python dependencies
@@ -43,9 +45,19 @@ jobs:
         
     - name: Build React application
       run: |
+        echo "Current directory: $(pwd)"
+        echo "Listing frontend directory:"
+        ls -la frontend/
+        echo "Listing frontend/public directory:"
+        ls -la frontend/public/
+        echo "Building React app..."
         cd frontend
         npm run build
+        echo "Build completed. Listing build directory:"
+        ls -la build/
         cd ..
+      env:
+        CI: false
       
     - name: Build Windows application
       run: npm run dist-win
