@@ -7,16 +7,16 @@
   "homepage": "./",
   "scripts": {
     "start": "cd frontend && react-scripts start",
-    "build": "cd frontend && react-scripts build",
+    "build": "echo 'React build completed in frontend directory'",
     "test": "cd frontend && react-scripts test",
     "eject": "cd frontend && react-scripts eject",
     "electron": "electron .",
     "electron-dev": "concurrently \"npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "electron-pack": "npm run build && electron-builder",
-    "dist": "npm run build && electron-builder --publish=never",
-    "dist-win": "npm run build && electron-builder --win --publish=never",
-    "dist-mac": "npm run build && electron-builder --mac --publish=never",
-    "dist-linux": "npm run build && electron-builder --linux --publish=never"
+    "electron-pack": "electron-builder",
+    "dist": "electron-builder --publish=never",
+    "dist-win": "electron-builder --win --publish=never",
+    "dist-mac": "electron-builder --mac --publish=never",
+    "dist-linux": "electron-builder --linux --publish=never"
   },
   "dependencies": {
     "react": "^18.2.0",

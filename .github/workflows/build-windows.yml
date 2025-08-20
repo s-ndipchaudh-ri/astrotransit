@@ -26,8 +26,14 @@ jobs:
       with:
         python-version: '3.11'
         
-    - name: Install Node.js dependencies
+    - name: Install Root Node.js dependencies
       run: npm install
+      
+    - name: Install Frontend Node.js dependencies
+      run: |
+        cd frontend
+        npm install
+        cd ..
       
     - name: Install Python dependencies
       run: |
@@ -36,7 +42,10 @@ jobs:
         cd ..
         
     - name: Build React application
-      run: npm run build
+      run: |
+        cd frontend
+        npm run build
+        cd ..
       
     - name: Build Windows application
       run: npm run dist-win
