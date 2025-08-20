@@ -26,6 +26,7 @@ INDIAN_CITIES = {
     "Kolkata": {"lat": 22.5726, "lon": 88.3639, "timezone": "Asia/Kolkata"},
     "Chennai": {"lat": 13.0827, "lon": 80.2707, "timezone": "Asia/Kolkata"},
     "Pune": {"lat": 18.5204, "lon": 73.8567, "timezone": "Asia/Kolkata"},
+    "Vashind (Shahapur)": {"lat": 19.3333, "lon": 73.3333, "timezone": "Asia/Kolkata"},
     "Bangalore": {"lat": 12.9716, "lon": 77.5946, "timezone": "Asia/Kolkata"},
     "Hyderabad": {"lat": 17.3850, "lon": 78.4867, "timezone": "Asia/Kolkata"},
     "Ahmedabad": {"lat": 23.0225, "lon": 72.5714, "timezone": "Asia/Kolkata"},

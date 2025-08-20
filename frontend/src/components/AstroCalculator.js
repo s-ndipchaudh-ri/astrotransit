@@ -274,6 +274,7 @@ const AstroCalculator = ({ onCalculate, onDateRangeCalculate, loading }) => {
   const presetLocations = [
     { name: 'Kalyan', lat: 19.2433, lon: 73.1305 },
     { name: 'Dombivali', lat: 19.2167, lon: 73.0833 },
+    { name: 'Vashind (Shahapur)', lat: 19.3333, lon: 73.3333 },
     { name: 'Shivaji Nagar (Pune)', lat: 18.5291, lon: 73.8564 },
     { name: 'Wakad (Pune)', lat: 18.5991, lon: 73.7625 },
     { name: 'Hadapsar (Pune)', lat: 18.4967, lon: 73.8578 },
